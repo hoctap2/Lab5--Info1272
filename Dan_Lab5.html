@@ -1,0 +1,99 @@
+<!--
+Name: Dan Vu		
+Date: 10/29/2021		
+Purpose: Create Math Drill web page 	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab 5</title>
+		<style>			
+		
+		body {
+			font-family: Arial;
+			background-color: #ccffff;
+			color: #0a126b;
+			font-size: 150%;			
+		}
+		
+		#output{
+			border: 12px double #202775;
+			color: #523620;
+			text-align: center;
+			padding: 20px;
+			margin: 20px auto 10px auto ;
+			width: 450px;				
+		}
+				
+		.button{			
+			font-family: Arial;
+			font-size: 14pt;
+			color: white;
+			background-color: #202775; 
+		}
+		</style>
+	</head>
+	<body>	
+		<h1>Math Drills</h1>
+		<!-- Math Operator Input -->
+		Select an arithmetic operation (* or +):
+		<input type="text" id="tbOperator" value="*">
+		<br> <br>
+			
+		<!-- Integer Input -->
+		Enter a positive integer value between 1 and 100:
+		<input type="text" id="tbInteger">
+		<br> <br>
+		
+		<!-- Buttons -->
+		<input type="button" value="Calculate" class="button" onclick="calculate()" />
+		<input type="button" value="Clear" class="button" onclick="clearOutput()" />
+		
+		<!-- Output -->
+		<div id="output"></div>
+		
+		<!-- Javascript -->
+		
+		<script>
+			//Caculate function
+			function calculate() 
+			{
+				//declare variables
+    			var tbOperator = document.getElementById("tbOperator").value;
+    			var tbInteger = document.getElementById("tbInteger").value;
+    			var output = "";
+    			var i = 0;
+				//validate that the integer input is correct; if it is not within the range of 1-100, then display an alert and clear the
+  				//text field
+				if (tbInteger < 1 || tbInteger > 100)
+				{
+					alert("Input is in correct");
+    				document.getElementById("tbInteger").value = "";
+				}
+    			//if the operation is +, then produce an addition table
+    			else if (tbOperator == "+") 
+				{
+        			for (i = 1; i <= 12; i++)
+						{
+							output += i + " + " + tbInteger + " = " + (i + parseInt(tbInteger)) + "<br>";
+        				}
+				}
+    			//if the operation is *, then produce a multiplication table
+    			else if (tbOperator == "*") 
+				{
+					for (i = 1; i <= 12; i++) 
+						{
+							output += i + " x " + tbInteger + " = " + (i * parseInt(tbInteger)) + "<br>";
+        				}
+    			}
+					document.getElementById("output").innerHTML = output;
+			}
+			//Clear function
+			function clearOutput()
+			{
+				var output = document.getElementById("output");
+				output.innerHTML = "";
+			}
+		</script>
+	</body>
+</html>
